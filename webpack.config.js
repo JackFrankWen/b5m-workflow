@@ -1,11 +1,12 @@
 var webpack = require("webpack");
 var rootPath = process.cwd();
+var path = require("path");
 module.exports = {
 	entry: {
 		svg : ["./src/js/svg.js"]
 	},
 	output: {
-		path: './js/',
+		path: './public/js/',
 		filename: '[name].js',		
 		chunkFilename: "svg.[id].[chunkhash:8].min.js"
 	},
@@ -23,6 +24,10 @@ module.exports = {
 				}
 			},
 			{test:/\.tpl/, loader: "ejs-loader?variable=data"},
+			{test:/\.scss$/, loader:'style-loader!css-loader!sass-loader'},
+			{test:/\.css$/, loader:'style-loader!css-loader'},
 		]
-	}
+	},
+	
+	
 }

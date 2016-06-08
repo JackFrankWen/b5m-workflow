@@ -7,7 +7,7 @@
 	 } else{ 
 	 	x1 = x1 + data.json[i].startTime*segment +15+5;
 	 } %>
-	 <g id = "msg<%= i %>" visibility="hidden" style="cursor: default; -webkit-user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: 14px; font-weight: 500;">
+	 <g id = "msg<%= i %>"  class="msg">
 	 	<rect x="<%= x1 %>" y="<%= y1 %>" width="254" height="215" rx="2" ry="2" fill="white" stroke="#c1c1c1" stroke-width="1.1" filter="url(#rablfilter0)">
 	 	</rect>
 

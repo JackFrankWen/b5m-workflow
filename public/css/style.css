@@ -1,0 +1,26 @@
+.text{
+	cursor: default; 
+	-webkit-user-select: none; 
+	-webkit-font-smoothing: antialiased; 
+	font-family: Roboto; 
+	font-size: 14px; 
+	font-weight: 500;
+}
+.scale{
+	cursor: default; 
+	-webkit-user-select: none; 
+	-webkit-font-smoothing: antialiased; 
+	font-family: Roboto; 
+	font-size: 14px; 
+	font-weight: 500;
+}
+.msg{
+	visibility: hidden;
+	opacity: 0;
+	cursor: default; 
+	-webkit-user-select: none; 
+	-webkit-font-smoothing: antialiased; 
+	font-family: Roboto; 
+	font-size: 14px; 
+	font-weight: 500;
+}

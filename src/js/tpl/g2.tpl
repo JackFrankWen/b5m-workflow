@@ -32,8 +32,9 @@
 
 	 <% for(let i=0,x=140,segment = (data.width-165)/10; i<11; i++) {  %>
 	        
-	     <text x="<%= x %>" y="10" 
-	     style="cursor: default; -webkit-user-select: none; -webkit-font-smoothing: antialiased; font-family: Arial; font-size: 13px; font-weight: normal;" fill="black">
+	     <text class="scale" 
+	     x="<%= x %>" y="10" 
+	      fill="black">
 	     			<%= data.timeGap*i %><%= data.unit %>
 	     </text>
 	      <% x= x + segment; %>
