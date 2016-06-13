@@ -24,3 +24,11 @@
 	font-size: 14px; 
 	font-weight: 500;
 }
+.notice{
+	cursor: default; 
+	-webkit-user-select: none; 
+	-webkit-font-smoothing: antialiased; 
+	font-family: Roboto; 
+	font-size: 13px; 
+	font-weight: bold;
+}
