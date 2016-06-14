@@ -139,7 +139,7 @@ export var fn = {
 	 */
 	manipulateData:function (json) {
 		let timeAxies = this.countTimeAxies(json),
-			startTime = this.timestampMin(json).min;
+			startTime = this.timestampMin(json);
 		let obj = {
 			qty:json.length,
 			startTime:this.timeConverter(startTime),
@@ -160,7 +160,8 @@ export var fn = {
  	 *		]
  	 */		
 	transformJson:function (json,startTime) {
-		let colors = ['#5e97f6','#f2a600','#0f9d58','#ab47bc','#0f9d58','#db4437','#ab47bc','#ee8100','#2a56c6','#fce8b2'];
+		let colors = ['#5e97f6','#f2a600','#0f9d58','#ab47bc',
+		'#db4437','#ab47bc','#ee8100','#2a56c6','#a61d4c','#0099c6','#dd4477','#aaaa11','#16d620'];
 		 for(let i=0;i<json.length;i++)
 		 {
 		 	let j = i+1;
@@ -211,19 +212,15 @@ export var fn = {
 	 *
 	 */
 	countTimeAxies:function (json) {
-		let  min = this.timestampMin(json),
-			 max = this.timestampMax(json),
+		let  minTime = this.timestampMin(json),
+			 maxTime = this.timestampMax(json),
 			 timeArr = [50,100,300,500,1000,10000,20000,30000],
-			 timeGap = [5,10,30,50,1000,10,20,30],
+			 timeGap = [5,10,30,50,100,1000,2000,3000],
 			 time,index,unit;
 			
-		if (max.max-min.min<min.latency) {
-			time = min.latency+max.max-min.min;
-		} else {
-			time = max.latency+max.max-min.min;
-		}
+		time = maxTime-minTime;
 		index = this.binarySearch(time, timeArr, 0, timeArr.length - 1);
-		if (index>3) {
+		if (index>4) {
 			unit = 's';
 		} else {
 			unit = 'ms';
@@ -269,36 +266,28 @@ export var fn = {
 	 * @return number
 	 */
 	timestampMin:function(arr) {
-	  var len = arr.length,latency, min = Infinity;
+	  var len = arr.length, min = Infinity;
 	  while (len--) {
 	    if (Number(arr[len].timestamp) < min) {
 	      min = Number(arr[len].timestamp);
-	      latency =  Number(arr[len].latency);
 	    }
 	  }
-	  return {
-	  	min:min,
-	  	latency:latency
-	  };
+	  return min
 	},
 	/*
 	 * Get maximum timestamp value of json
 	 * 
 	 * @arr 
-	 * @return obj
+	 * @return number
 	 */
 	timestampMax:function(arr) {
-	  var len = arr.length,latency, max = -Infinity;
+	  var len = arr.length, max = -Infinity;
 	  while (len--) {
-	    if (Number(arr[len].timestamp) > max) {
-	      max = Number(arr[len].timestamp);
-	      latency =  Number(arr[len].latency);
+	    if (Number(arr[len].timestamp+arr[len].latency) > max) {
+	      max = Number(arr[len].timestamp+arr[len].latency);
 	    }
 	  }
-	  return {
-	  	max:max,
-	  	latency:latency
-	  };
+	  return max
 	},
 	/*
 	 * Unix Timestamp Converter 

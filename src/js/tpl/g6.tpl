@@ -1,11 +1,18 @@
 <!-- level6 start-->
 <g>
  <% for(var i=0,x1=148,y1=15,segment = (data.width-165)/data.timeGap/10; i<data.json.length; i++) {  %>
-
 	 <% if(segment*data.json[i].latency-15>0){
+	 	//当长方形长度不为固定长度，
 	 	x1 = data.json[i].axisTime*segment+segment*data.json[i].latency + x1;
+	 	if(x1+255>data.width){
+	 		x1 = data.json[i].axisTime*segment - 109;
+	 	}
 	 } else{ 
+	 	//当长方形长度为固定长度 20
 	 	x1 = x1 + data.json[i].axisTime*segment +15+5;
+	 	if(x1+255>data.width){
+	 		x1 = data.json[i].axisTime*segment - 235;
+	 	}
 	 } %>
 	 <g id = "msg<%= i %>"  class="msg">
 	 	<rect x="<%= x1 %>" y="<%= y1 %>" width="254" height="215" rx="2" ry="2" fill="white" stroke="#c1c1c1" stroke-width="1.1" filter="url(#rablfilter0)">

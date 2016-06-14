@@ -29,15 +29,22 @@
 	      
 	       <% y= y+42; %>
 	<% } %>
-
 	 <% for(var i=0,x=140,segment = (data.width-165)/10; i<11; i++) {  %>
+
 	        
 	     <text class="scale" 
 	     x="<%= x %>" y="10" fill="black">
-	     		<%= data.timeGap*i %><%= data.unit %>
+		     <% if(data.timeGap<1000){ %>
+		     		<%= data.timeGap*i %><%= data.unit %>
+		      <% } else{ %>  
+		     		<%= data.timeGap*i/1000 %><%= data.unit %>
+		     <% } %>
 	     </text>
 	      <% x= x + segment; %>
+	}
+	}
 	<% } %>
+
 	<text  class="notice" x="10" y="<%= 33+42*data.qty %>" fill="black">时间轴原点时间: <%= data.startTime %></text>
 	<text  class="notice" x="340" y="<%= 33+42*data.qty %>" fill="black">同步</text>
 	<text  class="notice" x="420" y="<%= 33+42*data.qty %>" fill="black">异步</text>
